@@ -19,6 +19,11 @@ class Produk {
         $this->stok = $stok;
     }
 
+    // Destructor
+    public function __destruct() {
+        echo "<br>Objek produk " . $this->nama . " telah dihapus.";
+    }
+
     // Method menghitung harga setelah pajak
     public function hitungHargaPajak() {
         return $this->harga + ($this->harga * self::PAJAK);
@@ -52,7 +57,7 @@ class Produk {
     }
 }
 
-// Membuat objek produk
+// Membuat objek menggunakan constructor
 $produk1 = new Produk("P001", "Laptop", 10000000, 5);
 
 // Memanggil method
@@ -63,5 +68,7 @@ echo "<br>Contoh pemanggilan static method:<br>";
 echo "Pajak: Rp" .
     number_format(Produk::hitungPajak(10000000), 0, ',', '.');
 
-?>
+// Menghapus objek secara eksplisit
+unset($produk1);
 
+?>
